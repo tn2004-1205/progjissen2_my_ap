@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application_guitar_sound</string>
+    <string name="record_button">録音開始</string>
+    <string name="stop_button">録音停止</string>
+    <string name="playback_button">再生</string>
+    <string name="title">ものおとアコギ</string>
+</resources>
