@@ -3,5 +3,7 @@
     <string name="record_button">録音開始</string>
     <string name="stop_button">録音停止</string>
     <string name="playback_button">再生</string>
+    <string name="next">次へ</string>
     <string name="title">ものおとアコギ</string>
+    <string name="pitch">ピッチ検出中</string>
 </resources>

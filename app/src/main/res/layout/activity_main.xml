@@ -13,10 +13,10 @@
         android:id="@+id/record"
         android:layout_width="134dp"
         android:layout_height="67dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="264dp"
-        android:text="@string/record_button"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="244dp"
         android:backgroundTint="#1E90FF"
+        android:text="@string/record_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,6 +42,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/next"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="676dp"
+        android:backgroundTint="#84324ECD"
+        android:text="@string/next"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="179dp"
@@ -50,7 +61,7 @@
         android:layout_marginTop="124dp"
         android:layout_marginEnd="116dp"
         android:fontFamily="casual"
-        android:text="ものおとアコギ"
+        android:text="@string/title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"
         android:typeface="normal"

@@ -6,6 +6,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.Manifest;
 import androidx.core.content.ContextCompat;
+
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import android.media.MediaPlayer;
@@ -15,16 +17,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.IOException;
+
+import be.tarsos.dsp.pitch.PitchDetector;
+
 public class MainActivity extends AppCompatActivity {
+    private Pitch pitchDetector;
     // 録音開始ボタン
     private Button recordButton = null;
     // 録音停止ボタン
     private  Button stopButton = null;
     // 再生ボタン
     private Button playButton = null;
+    // 次へボタン
+    private Button nextButton = null;
     private static final String LOG_TAG = "AudioRecordTest";
     private boolean isRecording = false;
     private boolean isPlaying = false;
@@ -58,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         recordButton = findViewById(R.id.record); // XMLで定義したボタンID
         stopButton = findViewById(R.id.stop); // XMLで定義したボタンID
         playButton = findViewById(R.id.playback); // XMLで定義したボタンID
+        nextButton = findViewById(R.id.next); // XMLで定義したボタンID
         updateButtonStates(); // 初期ボタン状態の設定
         recordButton.setOnClickListener(v -> {
             if (isRecording) return; //録音中はリターン
@@ -76,19 +84,30 @@ public class MainActivity extends AppCompatActivity {
 
         });
         stopButton.setOnClickListener(v -> {
-                if(isRecording) {
-                    stopRecordingAndProcessAudio();
-                }
+            if(isRecording) {
+                stopRecordingAndProcessAudio();
+            }
         });
         playButton.setOnClickListener(v -> {
-                if(isPlaying) {
-                    stopPlayingAndProcessAudio();
+            if(isPlaying) {
+                stopPlayingAndProcessAudio();
+            }
+            else {
+                if (isRecordingAvailable && !isRecording) { // 録音中でなく再生可能なファイルがある場合
+                    startPlayingAndProcessAudio();
                 }
-                else {
-                    if (isRecordingAvailable && !isRecording) { // 録音中でなく再生可能なファイルがある場合
-                        startPlayingAndProcessAudio();
-                    }
-                }
+            }
+        });
+        nextButton.setOnClickListener(v -> {
+            if(isPlaying || fileName == null || !new File(fileName).exists()) {
+                return;
+            }
+            else {
+                // 3. Intentを作成して、次の画面（SubActivity）を指定
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                // 4. 画面遷移を開始
+                startActivity(intent);
+            }
         });
     }
     @Override
