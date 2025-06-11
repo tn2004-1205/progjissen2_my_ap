@@ -23,6 +23,5 @@ public class Pitch {
     private String Input_mp4 = this.inputFilePath;
     // リスナーの設定
     public void setListener(PitchDetectionListener listener){
-        this.listener = listener;
     }
 }
